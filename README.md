@@ -12,4 +12,6 @@ The research code is currently being consolidated into a release version corresp
 
 These changes are intended solely to improve readability and reproducibility and **do not alter the method described in the paper**.
 
-The complete and verified code is expected to be released by the end of August 2026.
+~~The complete and verified code is expected to be released by the end of August 2026.~~
+
+As we are currently occupied with preparing our paper submission, the release of the model training and evaluation scripts has been postponed. We will make them publicly available before INTERSPEECH 2026 begins. We apologize for the delay and appreciate your understanding.
