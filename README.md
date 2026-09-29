@@ -1,17 +1,63 @@
 # COALA (Contextualized ASR Leveraging Biasing Scoring)
 
-The paper has been accepted at [INTERSPEECH 2026](https://interspeech2026.org/en-AU) and is available on [arXiv:2607.08117](https://arxiv.org/abs/2607.08117).
+The paper has been accepted at [INTERSPEECH 2026](https://interspeech2026.org/en-AU) and is available on [ISCA Archive](https://www.isca-archive.org/interspeech_2026/guo26b_interspeech.html) and [arXiv:2607.08117](https://arxiv.org/abs/2607.08117).
 
 COALA is a robust framework designed to enhance speech-augmented language models (SLMs) in complex multi-entity scenarios.
 
 ![Model architecture](docs/architecture.png)
 
-## Code Release Status
+## Installation
+```
+# Create virtual python environment
+conda create -n COALA python==3.11.10 --y
+conda activate COALA
 
-The research code is currently being consolidated into a release version corresponding to the method and experiments reported in the paper. Specifically, we are improving the code structure and documentation for clarity and verifying the full experimental pipeline to ensure that no essential components are omitted and that the reported results can be reproduced.
+# Clone this repository
+git clone https://github.com/Guo0911/COALA.git
+cd COALA
 
-These changes are intended solely to improve readability and reproducibility and **do not alter the method described in the paper**.
+# Install the required packages
+pip install -r requirements.txt
+```
 
-~~The complete and verified code is expected to be released by the end of August 2026.~~
+## Prepare data
 
-As we are currently occupied with preparing our paper submission, the release of the model training and evaluation scripts has been postponed. We will make them publicly available before INTERSPEECH 2026 begins. We apologize for the delay and appreciate your understanding.
+Download and extract the LibriSpeech dataset from [OpenSLR 12](https://www.openslr.org/12), then place it under `dataset/raw/LibriSpeech/`.
+
+Download `all_rare_words.txt` and `common_words_5k.txt` from the [FBAI Deep Bias Repository](https://github.com/facebookresearch/fbai-speech/tree/main/is21_deep_bias/words), then place them under `dataset/raw/bias-info/`.
+
+```
+# Create the biasing list for each utterance
+python scripts/create_bias_list.py
+
+# Extract the feature of encoder
+python scripts/extract_feature2pt.py
+```
+
+## Usage
+For model training:
+```
+bash stage_1.sh
+bash stage_2.sh
+```
+
+For inference and evaluation:
+```
+bash inference.sh
+```
+
+## Citation
+```
+@inproceedings{guo26b_interspeech,
+  title     = {{COALA: Robust Contextualized Speech-augmented Language Modeling for ASR via Contrastive Regularizer and Biasing Score Estimation}},
+  author    = {Jhih-Rong Guo and Bi-Cheng Yan and Tien-Hong Lo and Berlin Chen},
+  year      = {2026},
+  booktitle = {{Interspeech 2026}},
+  pages     = {3101--3105},
+  doi       = {10.21437/Interspeech.2026-1097},
+  issn      = {2958-1796},
+}
+```
+
+## Contact
+If you have any comment or question, please contact [jhihrong@ntnu.edu.tw](mailto:jhihrong@ntnu.edu.tw)
